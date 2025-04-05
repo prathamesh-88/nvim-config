@@ -19,8 +19,7 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 
 vim.g.mapleader = " "
-
-
+vim.g.maplocalleader = "\\"
