@@ -1,6 +1,14 @@
 return {
 	{
-		"hrsh7th/cmp-nvim-lsp",
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -12,6 +20,12 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+		},
 		config = function()
 			-- Set up nvim-cmp.
 			local cmp = require("cmp")
@@ -38,8 +52,9 @@ return {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" }, -- For luasnip users.
-				}, {
+					{ name = "lazydev", group_index = 0 },
 					{ name = "buffer" },
+					{ name = "path" },
 				}),
 			})
 
@@ -71,15 +86,7 @@ return {
 				}, {
 					{ name = "cmdline" },
 				}),
-				matching = { disallow_symbol_nonprefix_matching = false },
 			})
-
-			-- Set up lspconfig.
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-			-- require("lspconfig")["<YOUR_LSP_SERVER>"].setup({
-			--    capabilities = capabilities,
-			-- })
 		end,
 	},
 }
