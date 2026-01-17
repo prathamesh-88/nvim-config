@@ -33,4 +33,8 @@ vim.g.netrw_winsize = 25
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldenable = true
+vim.opt.foldcolumn = "1"
