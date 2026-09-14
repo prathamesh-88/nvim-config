@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "gopls", "pyright", "eslint" },
+				ensure_installed = { "lua_ls", "gopls", "pyright", "eslint", "jsonls" },
 			})
 		end,
 	},
@@ -18,14 +18,14 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gopls.setup({ capabilities = capabilities })
+            vim.lsp.config("lua_ls" , {
+                capabilities = capabilities,
+            })
+            vim.lsp.config("pyright", {
+                capabilities = capabilities,
+            })
+            vim.lsp.config("gopls", { capabilities = capabilities })
+            vim.lsp.config("jsonls", { capabilities = capabilities })
 
             vim.api.nvim_create_autocmd('LspAttach', {
                 callback = function(e)

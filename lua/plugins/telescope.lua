@@ -9,6 +9,7 @@ return {
             vim.keymap.set("n", "<leader>ff", function()
                 builtin.find_files({
                     hidden = true,
+                    no_ignore = true,
                 })
             end, { desc = "Telescope find files" })
 
